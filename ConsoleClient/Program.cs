@@ -1,4 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DavidTielke.PersonManagerApp.Data.DataStoring;
+using DavidTielke.PersonManagerApp.Data.DataStoring.Contract;
+using DavidTielke.PersonManagerApp.Data.FileStoring;
+using DavidTielke.PersonManagerApp.Data.FileStoring.Contract;
+using DavidTielke.PersonManagerApp.Logic.PersonManagement;
+using DavidTielke.PersonManagerApp.Logic.PersonManagement.Contract;
+using Microsoft.Extensions.DependencyInjection;
+using Mappings;
 
 namespace DavidTielke.PersonManagerApp.UI.ConsoleClient
 {
@@ -6,12 +13,9 @@ namespace DavidTielke.PersonManagerApp.UI.ConsoleClient
     {
         static void Main(string[] args)
         {
-            var services = new ServiceCollection();
+            var services = new ServiceCollectionFactory().Create();
+
             services.AddTransient<IPersonDisplayCommands, PersonDisplayCommands>();
-            services.AddTransient<IPersonManager, PersonManager>();
-            services.AddTransient<IPersonRepository, PersonRepository>();
-            services.AddTransient<IPersonParser, PersonParser>();
-            services.AddTransient<IFileReader, FileReader>();
 
             var provider = services.BuildServiceProvider();
 

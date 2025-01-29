@@ -1,4 +1,6 @@
-﻿namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.Data.FileStoring.Contract;
+
+namespace DavidTielke.PersonManagerApp.Data.FileStoring;
 
 public class FileReader : IFileReader
 {

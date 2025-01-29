@@ -1,4 +1,4 @@
-﻿namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
+﻿namespace DavidTielke.PersonManagerApp.Data.FileStoring.Contract;
 
 public interface IFileReader
 {

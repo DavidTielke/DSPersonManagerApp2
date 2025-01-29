@@ -1,4 +1,4 @@
-﻿namespace DavidTielke.PersonManagerApp.UI.ConsoleClient.DataClasses;
+﻿namespace DavidTielke.PersonManagerApp.CrossCutting.DataClasses;
 
 public class Person
 {

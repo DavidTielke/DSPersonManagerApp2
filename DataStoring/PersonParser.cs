@@ -1,6 +1,7 @@
-﻿using DavidTielke.PersonManagerApp.UI.ConsoleClient.DataClasses;
+﻿using DavidTielke.PersonManagerApp.CrossCutting.DataClasses;
+using DavidTielke.PersonManagerApp.Data.DataStoring.Contract;
 
-namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
+namespace DavidTielke.PersonManagerApp.Data.DataStoring;
 
 public class PersonParser : IPersonParser
 {

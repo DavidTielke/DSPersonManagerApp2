@@ -1,4 +1,6 @@
-﻿namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.Logic.PersonManagement.Contract;
+
+namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
 
 public class PersonDisplayCommands : IPersonDisplayCommands
 {
