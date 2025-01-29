@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Queries>
+  <Group Name="SRP" Active="True" ShownInReport="False">
+    <Query Active="True" DisplayList="True" DisplayStat="False" DisplaySelectionView="False" IsCriticalRule="False"><![CDATA[// <Name>Keine Klasse mit mehr als 220 LOC oder 10 Methoden</Name>
+
+warnif count > 0
+
+let myTypes = JustMyCode.Types
+
+from t in myTypes
+
+let trueMethods = t.Methods.Where(m => !m.IsPropertySetter && !m.IsPropertyGetter)
+
+where t.NbLinesOfCode >= 2 || trueMethods.Count() > 1
+
+select new { t, t.NbLinesOfCode, trueMethods, Debt = 10.ToMinutes().ToDebt(), Severity = Severity.High  }]]></Query>
+  </Group>
+  <Group Name="Namensmuster" Active="True" ShownInReport="False">
+    <Query Active="True" DisplayList="True" DisplayStat="False" DisplaySelectionView="False" IsCriticalRule="False"><![CDATA[// <Name>Namensmuster Manager wird eingehalten</Name>
+warnif count > 0
+ 
+let namePattern = "Manager"
+let allowedMethods = new []{"Add","Update","Remove"}
+let allowedPrefixes = new[]{"Get","Is","Are"}
+ 
+ 
+let managementClasses = JustMyCode.Types.Where(t => !t.ParentNamespace.NameLike("DataClasses") 
+                                                 && !t.IsGeneratedByCompiler)
+ 
+from t in managementClasses.Where(t1 => t1.Name.EndsWith(namePattern))
+ 
+let trueMethods = t.Methods.Where(m => !m.IsGeneratedByCompiler 
+                                    && !m.IsPropertyGetter
+                                    && !m.IsPropertySetter 
+                                    && !m.IsConstructor)
+ 
+let forbiddenMethods = trueMethods.Where(m => !allowedMethods.Any(m1 => m.SimpleName == m1) 
+&& allowedPrefixes.All(mp => !m.SimpleName.StartsWith(mp)))
+
+where forbiddenMethods.Any()
+ 
+select new { t, forbiddenMethods }]]></Query>
+    <Query Active="True" DisplayList="True" DisplayStat="False" DisplaySelectionView="False" IsCriticalRule="False"><![CDATA[// <Name>Namensmuster Manager wird eingehalten</Name>
+warnif count > 0
+ 
+let namePattern = "Repository"
+let allowedMethods = new []{"Insert","Update","Delete", "Query","GetById"}
+let allowedPrefixes = new[]{""}
+ 
+ 
+let managementClasses = JustMyCode.Types.Where(t => !t.ParentNamespace.NameLike("DataClasses") 
+                                                 && !t.IsGeneratedByCompiler)
+ 
+from t in managementClasses.Where(t1 => t1.Name.EndsWith(namePattern))
+ 
+let trueMethods = t.Methods.Where(m => !m.IsGeneratedByCompiler 
+                                    && !m.IsPropertyGetter
+                                    && !m.IsPropertySetter 
+                                    && !m.IsConstructor)
+ 
+let forbiddenMethods = trueMethods.Where(m => !allowedMethods.Any(m1 => m.SimpleName == m1) 
+&& allowedPrefixes.All(mp => !m.SimpleName.StartsWith(mp)))
+
+where forbiddenMethods.Any()
+ 
+select new { t, forbiddenMethods }
+]]></Query>
+  </Group>
+</Queries>

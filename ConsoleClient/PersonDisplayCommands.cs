@@ -1,12 +1,12 @@
-﻿namespace ConsoleClient;
+﻿namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
 
-public class PersonDisplayCommands
+public class PersonDisplayCommands : IPersonDisplayCommands
 {
-    private PersonManager _personManager;
+    private IPersonManager _personManager;
 
-    public PersonDisplayCommands()
+    public PersonDisplayCommands(IPersonManager personManager)
     {
-        _personManager = new PersonManager();
+        _personManager = personManager;
     }
 
     public void DisplayAllAdults()

@@ -1,6 +1,8 @@
-﻿namespace ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.UI.ConsoleClient.DataClasses;
 
-class PersonParser
+namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
+
+public class PersonParser : IPersonParser
 {
     public Person ParseFromCsv(string dataLine)
     {

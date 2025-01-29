@@ -1,6 +1,6 @@
-﻿namespace ConsoleClient;
+﻿namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
 
-class FileReader
+public class FileReader : IFileReader
 {
     public IEnumerable<string> ReadLines(string path)
     {
